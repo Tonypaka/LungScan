@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/gradient_bg">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="top"
+        android:background="@color/darkBg2"
+        android:padding="16dp">
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Lung Scan"
+            android:textColor="#FFFFFF"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:gravity="center"/>
+    </LinearLayout>
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginHorizontal="32dp"
+        app:cardCornerRadius="20dp"
+        app:cardElevation="15dp"
+        app:cardBackgroundColor="#FFFFFF">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="28dp"
+            android:gravity="center">
+
+            <ImageView
+                android:layout_width="70dp"
+                android:layout_height="70dp"
+                android:src="@android:drawable/ic_menu_help"
+                android:tint="@color/colorPrimary"
+                android:layout_marginBottom="12dp"
+                android:contentDescription="shield"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="สแกนปอดจากภาพ X-ray"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                android:textColor="@color/textDark"
+                android:layout_marginBottom="8dp"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="ระบบประเมินความเสี่ยงเบื้องต้น\nไม่ใช้แทนแพทย์"
+                android:textSize="13sp"
+                android:textColor="@color/textGray"
+                android:gravity="center"
+                android:layout_marginBottom="16dp"/>
+
+            <ImageView
+                android:id="@+id/ivPreview"
+                android:layout_width="180dp"
+                android:layout_height="180dp"
+                android:scaleType="centerCrop"
+                android:visibility="gone"
+                android:layout_marginBottom="16dp"
+                android:contentDescription="preview"/>
+
+            <!-- Loading -->
+            <ProgressBar
+                android:id="@+id/progressBar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:visibility="gone"
+                android:layout_marginBottom="8dp"/>
+
+            <TextView
+                android:id="@+id/tvLoading"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="กำลังวิเคราะห์..."
+                android:textColor="@color/textGray"
+                android:visibility="gone"
+                android:layout_marginBottom="12dp"/>
+
+            <Button
+                android:id="@+id/btnSelectImage"
+                android:layout_width="200dp"
+                android:layout_height="48dp"
+                android:text="🖼 เลือกรูป X-ray"
+                android:textColor="@color/textDark"
+                android:background="@drawable/btn_rounded"
+                android:layout_marginBottom="10dp"/>
+
+            <Button
+                android:id="@+id/btnScan"
+                android:layout_width="200dp"
+                android:layout_height="48dp"
+                android:text="🔍 เริ่มสแกน"
+                android:textColor="@color/white"
+                android:background="@drawable/btn_red"/>
+
+        </LinearLayout>
+    </androidx.cardview.widget.CardView>
+</FrameLayout>
