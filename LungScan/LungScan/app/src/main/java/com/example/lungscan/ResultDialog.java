@@ -1,9 +1,12 @@
 package com.example.lungscan;
 
+import android.app.Activity;
 import android.app.Dialog;
 import android.content.Context;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.view.ViewGroup;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -26,9 +29,16 @@ public class ResultDialog extends Dialog {
         setContentView(R.layout.dialog_result);
         setCancelable(false);
 
-        // ทำให้ dialog มีมุมโค้ง
+        // 🔥 จัด dialog ไม่ให้เละ + อยู่กลาง
         if (getWindow() != null) {
             getWindow().setBackgroundDrawableResource(android.R.color.transparent);
+
+            getWindow().setLayout(
+                ViewGroup.LayoutParams.MATCH_PARENT,
+                ViewGroup.LayoutParams.WRAP_CONTENT
+            );
+
+            getWindow().setDimAmount(0.6f);
         }
 
         TextView tvStage      = findViewById(R.id.tvStage);
@@ -41,7 +51,6 @@ public class ResultDialog extends Dialog {
         tvStage.setTextColor(result.color);
         tvConfidence.setText(String.format("ความมั่นใจ %.1f%%", result.confidence));
 
-        // เปลี่ยน icon ตาม stage เหมือน Flutter result_dialog.dart
         if (result.stage.equals("ไม่พบมะเร็ง")) {
             ivIcon.setImageResource(android.R.drawable.ic_menu_info_details);
             ivIcon.setColorFilter(Color.parseColor("#4CAF50"));
@@ -63,7 +72,9 @@ public class ResultDialog extends Dialog {
 
         btnClose.setOnClickListener(v -> {
             dismiss();
-            android.os.Process.killProcess(android.os.Process.myPid());
+            if (getContext() instanceof Activity) {
+                ((Activity) getContext()).finish();
+            }
         });
     }
 }
